@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>US 밀리터리 아카이브</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#efece0;--panel:#f8f6ee;--ink:#23251d;--sub:#5d6050;--line:#d5d1be;--od:#4b5320;--od-ink:#f4f1e4;--rust:#a9441b;--ok:#2f6b2f;--chip:#e4e0cc;--shadow:0 1px 0 rgba(0,0,0,.04);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171913;--panel:#1f221a;--ink:#e9e6d4;--sub:#a3a68f;--line:#34382b;--od:#8c9a45;--od-ink:#14160e;--rust:#e0814f;--ok:#8fc58f;--chip:#2a2e22;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171913;--panel:#1f221a;--ink:#e9e6d4;--sub:#a3a68f;--line:#34382b;--od:#8c9a45;--od-ink:#14160e;--rust:#e0814f;--ok:#8fc58f;--chip:#2a2e22;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Noto Sans KR",system-ui,sans-serif;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto}
+h1{font:700 30px/1.1 "Archivo Narrow","Noto Sans KR",sans-serif;letter-spacing:.04em;text-transform:uppercase;margin:0}
+h1 small{display:block;font:400 12px "IBM Plex Mono",monospace;letter-spacing:.08em;color:var(--sub);margin-top:6px;text-transform:none}
+h2{font:700 15px "Archivo Narrow","Noto Sans KR",sans-serif;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px;color:var(--od)}
+.notice{margin:14px 0;padding:10px 12px;border:1px dashed var(--line);border-radius:8px;font-size:13px;color:var(--sub);background:var(--panel)}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:16px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.panel+.panel{margin-top:16px}
+label{font:600 12px "IBM Plex Mono",monospace;letter-spacing:.05em;color:var(--sub);display:block;margin-bottom:6px}
+input[type=text]{width:100%;font:500 16px "IBM Plex Mono","Noto Sans KR",monospace;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+input[type=text]:focus{outline:2px solid var(--od);outline-offset:1px;border-color:var(--od)}
+.combo{position:relative}
+.sug{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 4px);background:var(--panel);border:1px solid var(--line);border-radius:8px;max-height:320px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.sug[hidden]{display:none}
+.sug button{display:block;width:100%;text-align:left;border:0;background:none;color:var(--ink);padding:10px 14px;font:inherit;cursor:pointer;border-bottom:1px solid var(--line)}
+.sug button:last-child{border-bottom:0}
+.sug button[aria-selected=true],.sug button:hover{background:var(--chip)}
+.sug b{font-weight:700}.sug small{display:block;color:var(--sub);font-size:12px}
+mark{background:transparent;color:var(--rust);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font:600 12px "IBM Plex Mono",monospace;padding:4px 9px;border-radius:999px;background:var(--chip);border:1px solid var(--line);cursor:pointer;color:var(--ink)}
+.tag{display:inline-block;font:600 11px "IBM Plex Mono",monospace;letter-spacing:.04em;padding:2px 8px;border-radius:4px;background:var(--od);color:var(--od-ink);margin-right:6px}
+.tag.warn{background:var(--rust);color:#fff}
+dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin:0}
+dt{font:600 12px "IBM Plex Mono",monospace;color:var(--sub);padding-top:2px;white-space:nowrap}
+dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.item-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-bottom:8px}
+.item-h .n{font:700 22px/1.2 "Archivo Narrow","Noto Sans KR",sans-serif}
+.empty{color:var(--sub);font-size:13px}
+.todo{margin-top:12px;padding:10px 12px;border-left:3px solid var(--rust);background:var(--chip);border-radius:0 6px 6px 0;font-size:13px}
+ul.refs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ul.refs li{padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);min-width:0}
+ul.refs a{color:var(--od);font-weight:600;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+ul.refs small{display:block;color:var(--sub)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.thumbs figure{margin:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg);min-width:0}
+.thumbs img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--chip)}
+.thumbs figcaption{font-size:11px;padding:6px 8px;color:var(--sub);overflow-wrap:anywhere}
+.thumbs a{color:var(--od)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th,.tbl td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font:600 11px "IBM Plex Mono",monospace;color:var(--sub);letter-spacing:.05em}
+.tblw{overflow-x:auto}
+.st{font:600 11px "IBM Plex Mono",monospace;white-space:nowrap}.st.on{color:var(--ok)}.st.off{color:var(--rust)}
+.mono{font-family:"IBM Plex Mono",monospace}
+.res{margin-top:12px}
+.mk{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.mk .chip[aria-pressed=true]{background:var(--od);color:var(--od-ink);border-color:var(--od)}
+.fy{font:600 12px "IBM Plex Mono",monospace;color:var(--od);padding-top:10px !important}
+.hit{margin-top:10px;padding:10px 12px;border-left:3px solid var(--ok);background:var(--chip);border-radius:0 6px 6px 0;font-size:13px}
+.hit a{color:var(--od);font-weight:600;cursor:pointer;text-decoration:underline}
+.src{font-size:12px;color:var(--sub);margin:4px 0 8px}
+.vf{display:inline-block;font:600 10px "IBM Plex Mono",monospace;padding:1px 6px;border-radius:3px;margin-left:6px;vertical-align:middle;border:1px solid var(--ok);color:var(--ok)}
+.vf.est{border-color:var(--rust);color:var(--rust)}
+.nsn td,.nsn th{font-family:"IBM Plex Mono",monospace;font-size:12px;white-space:nowrap}
+.nsn td:first-child{font-weight:600;color:var(--sub)}
+.revs{font-size:11px;color:var(--sub);line-height:1.4}
+.links a{color:var(--od);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.links li{overflow-wrap:anywhere}
+.err{color:var(--rust);font-weight:600;font-size:13px}
+footer{margin-top:22px;font-size:12px;color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>US 밀리터리 아카이브<small>WW2 → KOREA → VIETNAM · U.S. ARMY CLOTHING · 규격·재고번호·계약번호</small></h1>
+  </header>
+  <div class="notice" id="notice">품목 목록은 이름·별칭·시대만 담은 <b>기본 목록</b>이에요. 규격번호, 재고번호(FSN/NSN), 사이즈표, 계약 정보는 출처를 확인한 것만 채우고, 확인 전에는 비워 둬요. 아래 자료 찾기는 공개 아카이브에서 실시간으로 가져와요.</div>
+
+  <div class="grid">
+    <main>
+      <section class="panel" aria-label="품목 검색">
+        <h2>품목 검색</h2>
+        <label for="q">키워드 (예: m43, m65, alpha, HBT)</label>
+        <div class="combo">
+          <input type="text" id="q" role="combobox" aria-expanded="false" aria-controls="sug" aria-autocomplete="list" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="m43">
+          <div class="sug" id="sug" role="listbox" hidden></div>
+        </div>
+        <div class="chips" id="quick"></div>
+      </section>
+
+      <section class="panel" id="detail" aria-live="polite">
+        <div class="empty">품목을 검색하거나 위의 칩을 눌러보세요.</div>
+      </section>
+    </main>
+
+    <aside>
+      <section class="panel" aria-label="계약번호 해석기">
+        <h2>계약번호 해석기</h2>
+        <label for="cn">라벨의 계약번호 (예: DSA-100-67-C-3537)</label>
+        <input type="text" id="cn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="DA-36-030-QM-369">
+        <div class="chips" id="cnEx"></div>
+        <div class="res" id="cnOut"><div class="empty">번호를 입력하면 시대·기관·회계연도를 풀어줘요.</div></div>
+      </section>
+
+      <section class="panel" aria-label="자료 연동 상태">
+        <h2>자료 연동 상태</h2>
+        <div class="tblw"><table class="tbl">
+          <thead><tr><th>출처</th><th>상태</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>Internet Archive</td><td class="st on">연동</td><td>키 없이 검색. 스캔된 카탈로그·교범 목록</td></tr>
+            <tr><td>Wikimedia Commons</td><td class="st on">연동</td><td>키 없이 검색. 라이선스를 함께 표시</td></tr>
+            <tr><td>Smithsonian Open Access</td><td class="st off">키 필요</td><td>api.data.gov 키 발급 후 연결</td></tr>
+            <tr><td>NARA 카탈로그</td><td class="st off">보류</td><td>키 필요, 결과 저장·캐시 금지라 정적 사이트에 부적합</td></tr>
+            <tr><td>DLA PUB LOG</td><td class="st off">보류</td><td>무료 월간 다운로드. NSN 기준이라 1974년 이전 FSN은 없음</td></tr>
+            <tr><td>계약·업체 DB</td><td class="st off">없음</td><td>공개 이용 가능한 DB 미확인. 직접 입력으로 쌓기</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+    </aside>
+  </div>
+  <footer>규격·NSN 정보는 CIE Hub와 EverySpec 페이지에서 옮긴 것이고, 원본 링크를 함께 두었어요. 계약번호 해석 규칙은 2차 자료(수집가 해설)를 바탕으로 했어요. 1차 자료로 검증되면 표시를 바꿀게요. 계약일은 제조일과 같지 않아요.</footer>
+</div>
+
+<script>
+/* ---------- 기본 목록 (이름·별칭·시대만. 상세 필드는 출처 확인 후 채움) ---------- */
+const ITEMS=[
+ {id:'m1941-fj',ko:'M-1941 필드 재킷',en:'Jacket, Field, M-1941',al:['m41','m1941','m-41','파슨스 재킷','parsons jacket','field jacket'],wars:['WW2'],cat:'재킷'},
+ {id:'m1942-jump',ko:'M-1942 공수 점프 재킷',en:'Jacket, Parachute Jumper, M-1942',al:['m42','m1942','점프 재킷','paratrooper jacket','jump jacket'],wars:['WW2'],cat:'재킷'},
+ {id:'m1943-fj',ko:'M-1943 필드 재킷',en:'Jacket, Field, M-1943',al:['m43','m1943','m-43','field jacket','필드자켓'],wars:['WW2','한국전'],cat:'재킷'},
+ {id:'m1943-tr',ko:'M-1943 필드 트라우저',en:'Trousers, Field, M-1943',al:['m43 trousers','m43 pants','m1943 trousers','m43 바지'],wars:['WW2','한국전'],cat:'바지'},
+ {id:'m1944-wool',ko:'M-1944 울 필드 재킷 (아이크 재킷)',en:'Jacket, Field, Wool, O.D., M-1944',al:['m44','m1944','ike jacket','아이크','아이젠하워 재킷'],wars:['WW2'],cat:'재킷'},
+ {id:'hbt-jkt',ko:'HBT 재킷',en:'Jacket, Herringbone Twill',al:['hbt','herringbone','헤링본','hbt jacket'],wars:['WW2'],cat:'재킷'},
+ {id:'hbt-tr',ko:'HBT 트라우저',en:'Trousers, Herringbone Twill',al:['hbt','hbt trousers','hbt pants'],wars:['WW2'],cat:'바지'},
+ {id:'wool-shirt',ko:'울 플란넬 셔츠 (머스터드 셔츠)',en:'Shirt, Flannel, O.D.',al:['mustard shirt','wool shirt','머스터드','플란넬 셔츠'],wars:['WW2','한국전'],cat:'셔츠'},
+ {id:'m1943-boot',ko:'M-1943 컴뱃 서비스 부츠 (더블 버클)',en:'Boots, Service, Combat, M-1943',al:['m43 boots','double buckle','더블 버클','컴뱃 부츠','m1943 boots'],wars:['WW2','한국전'],cat:'신발'},
+ {id:'m1950-fj',ko:'M-1950 필드 재킷',en:'Jacket, Field, M-1950',al:['m50','m1950','m-50'],wars:['한국전'],cat:'재킷'},
+ {id:'m1951-fj',ko:'M-1951 필드 재킷',en:'Jacket, Field, M-1951',al:['m51','m1951','m-51','field jacket','필드자켓'],wars:['한국전','베트남전'],cat:'재킷'},
+ {id:'m1965-fj',ko:'M-1965 필드 재킷',en:'Coat, Cold Weather, Field (M-1965)',al:['jacket field m-1965','m65','m1965','m-65','field jacket','필드자켓'],wars:['베트남전'],cat:'재킷'},
+ {id:'tcc',ko:'열대 전투복 (정글 재킷)',en:'Coat, Man\'s, Combat, Tropical',al:['tropical combat coat','tcc','jungle jacket','정글 재킷','정글자켓','정글복'],wars:['베트남전'],cat:'재킷'},
+ {id:'og107-shirt',ko:'OG-107 유틸리티 셔츠',en:'Shirt, Man\'s, Cotton Sateen, OG-107',al:['og107','og-107','utility shirt','og 107','유틸리티 셔츠'],wars:['베트남전'],cat:'셔츠'}
+];
+const WARS=['WW2','한국전','베트남전'];
+
+/* ---------- 계약 목록 (제공자 정리본, 1차 자료 대조 전) ----------
+   품목 id 아래에 "DSA 100-67-C-3526 — 제조사" 줄을 그대로 붙여넣으면 돼요. 연도 제목·불릿(*)은 무시해요. */
+const CONTRACT_SRC='제공자 정리본 · 라벨·1차 자료 대조 전';
+const RAW_CONTRACTS={
+'m1965-fj':`
+1967
+* DSA 100-67-C-3526 — Rolane Sportswear
+* DSA 100-67-C-3536 — Alpha Industries
+1968
+* DSA 100-68-C-1974 — Alpha Industries
+* DSA 100-68-C-1044 — Alpha Industries
+* DSA 100-68-C-0471 — John Ownbey Company
+* DSA 100-68-C-0472 — So-Sew Styles
+* DSA 100-68-C-0968 — Bonham Manufacturing Co.
+* DSA 100-68-C-2018 — Mason & Hughes
+* DSA 100-68-C-2372 — Appleman Manufacturing Co.
+* DSA 100-68-C-2373 — Allen Overall Co.
+1969
+* DSA 100-69-C-1082 — Rolane Sportswear
+1972
+* DSA 100-72-C-0703 — Alpha Industries
+* DSA 100-72-C-1666 — Alpha Industries
+* DSA 100-72-C-1202 — Alpha Industries
+* DSA 100-72-C-1732 — So-Sew Styles
+1973
+* DSA 100-73-C-0358 — So-Sew Styles
+* DSA 100-73-C-1019 — So-Sew Styles
+* DSA 100-73-C-0856 — Alpha Industries
+1974
+* DSA 100-74-C-0354 — Winfield Manufacturing
+* DSA 100-74-C-1417 — Alpha Industries
+1975
+* DSA 100-75-C-1200 — Cherokee Industries
+1976
+* DSA 100-76-C-0605 — Winfield Manufacturing Co.
+* DSA 100-76-C-0739 — Alpha Industries
+* DSA 100-76-C-1003 — Alpha Industries
+* DSA 100-76-C-1083 — John Ownbey Company
+* DSA 100-76-C-1084 — So-Sew Styles
+* DSA 100-76-C-0889 — So-Sew Styles
+1977
+* DSA 100-77-C-1386 — John Ownbey Company
+1980
+* DLA 100-80-C-3301 — John Ownbey Company
+* DLA 100-80-C-3302 — Alpha Industries
+* DLA 100-80-C-3303 — Golden Manufacturing Co.
+1981
+* DLA 100-81-C-3070 — John Ownbey Company
+* DLA 100-81-C-2336 — Alpha Industries
+* DLA 100-81-C-3462 — Winfield Manufacturing
+1982
+* DLA 100-82-C-0575 — Alpha Industries
+`};
+// 같은 회사의 표기 차이(Co., Company)는 하나로 묶어요
+const MAKER_ALIAS={'Winfield Manufacturing Co.':'Winfield Manufacturing','Bonham Manufacturing Co.':'Bonham Manufacturing','Appleman Manufacturing Co.':'Appleman Manufacturing','Allen Overall Co.':'Allen Overall','Golden Manufacturing Co.':'Golden Manufacturing'};
+const fyFull=yy=>+yy>=30?1900+ +yy:2000+ +yy;
+const ckey=(pre,aac,yy,t,ss)=>pre+aac+'-'+yy+'-'+t+'-'+String(ss).padStart(4,'0');
+const CONTRACTS=[];
+for(const [item,txt] of Object.entries(RAW_CONTRACTS)){
+  for(const line of txt.split('\n')){
+    const m=line.match(/^\s*(?:[*\-•]\s*)?([A-Z]{3})\s*(\d{3})-(\d{2})-([A-Z])-(\d{3,5})\s*[—–-]+\s*(.+?)\s*$/);
+    if(!m)continue;
+    const co=m[6];
+    CONTRACTS.push({item,pre:m[1],aac:m[2],yy:m[3],t:m[4],ss:m[5],fy:fyFull(m[3]),co:MAKER_ALIAS[co]||co,rawCo:co,key:ckey(m[1],m[2],m[3],m[4],m[5]),no:m[1]+' '+m[2]+'-'+m[3]+'-'+m[4]+'-'+m[5]});
+  }
+}
+const CBYKEY=Object.fromEntries(CONTRACTS.map(c=>[c.key,c]));
+const MAKERS=(()=>{const m={};for(const c of CONTRACTS)(m[c.co]=m[c.co]||[]).push(c);return Object.entries(m).map(([name,list])=>({maker:true,id:'mk:'+name,ko:name,en:'제조사 · 계약 '+list.length+'건',al:[name],wars:[],list})).sort((a,b)=>b.list.length-a.list.length||a.ko.localeCompare(b.ko))})();
+
+/* ---------- 확인된 품목 정보 (출처가 있는 것만) ---------- */
+const FACT_SRC='CIE Hub · EverySpec · 확인일 2026-11-23';
+const FACTS={
+'m1965-fj':{
+  en:'Coat, Cold Weather, Field',
+  spec:'MIL-C-43455',
+  specNote:'최초 1966-09-27 · 이후 MIL-DTL-43455K로 재지정 (2007-08-02)',
+  fabric:'MIL-C-43191 (나일론·면 방풍 새틴, CIE Hub 기재)',
+  ia:['MIL-C-43455','"Coat, Cold Weather, Field"'],
+  sizes:{len:['X-short','Short','Regular','Long','X-long'],body:['X-small','Small','Medium','Large','X-large']},
+  sizeNote:'길이 5단계 × 체형 5단계 (CIE Hub). 모든 조합이 만들어진 건 아니에요.',
+  nsn:{label:'Class 1 · Olive Green 107 (베트남전 시기 색)',cols:['X-short','Short','Regular','Long'],rows:[
+    ['X-small','8415-01-062-0677','8415-01-027-6032','8415-00-782-2933','8415-01-066-5578'],
+    ['Small','8415-01-063-0079','8415-00-782-2935','8415-00-782-2936','8415-00-782-2937'],
+    ['Medium','8415-01-062-0678','8415-00-782-2938','8415-00-782-2939','8415-00-782-2940'],
+    ['Large','','8415-00-782-2941','8415-00-782-2942','8415-00-782-2943'],
+    ['X-large','','8415-01-234-3323','8415-00-782-2945','']]},
+  nsnNote:'Class 2~5(우드랜드·사막·UCP 등)와 아프간 군경용 번호는 CIE Hub 원본에 있어요. 이 표는 원본과 대조해서 쓰세요.',
+  drawing:'CIE Hub 품목 페이지에는 도면이 없어요. 규격서 PDF 안에 도면이 있는지는 아직 확인하지 못했어요.',
+  revs:[['1966-09-27','원본'],['1968-07-08','Amdt.1'],['1970-03-17','Rev A'],['1970-09-03','Rev A Amdt.1'],['1971-09-16','Rev B'],['1972-03-20','Rev B Amdt.1'],['1973-08-17','Rev C'],['1975-09-09','Rev C Amdt.1'],['1977-05-09','Rev D'],['1978-03-08','Rev D Amdt.1'],['1980-06-03','Rev E'],['1982-06-25','Rev E Amdt.1'],['1984-01-10','Rev F'],['1985-08-14','Rev F Amdt.1'],['1986-12-17','Rev G'],['1989-01-20','Rev G Amdt.1'],['1990-08-08','Rev H'],['1990-09-07','Rev H Int.Amdt.1'],['1990-10-16','Rev H Int.Amdt.2'],['1991-08-21','Rev J'],['2007-08-02','Rev K (MIL-DTL-43455K)']],
+  links:[
+    ['CIE Hub · M-65 품목 페이지','https://ciehub.info/clothing/CW/M65/CoatCWField.html','NSN 표, 사이즈, 개정 이력'],
+    ['CIE Hub · MIL-C-43455 규격 페이지','https://ciehub.info/spec/DTL/MIL-C-43455.html','개정별 날짜와 Class 변경'],
+    ['EverySpec · MIL-C-43455J (1991) PDF','https://everyspec.com/MIL-SPECS/MIL-SPECS-MIL-C/MIL-C-43455J_43131/','6.68 MB · 한참 뒤 개정이라 베트남전 시기 도면은 아님'],
+    ['EverySpec · MIL-DTL-43455K (2007)','https://everyspec.com/MIL-SPECS/MIL-SPECS-MIL-DTL/MIL-DTL-43455K_43130/','후속 상세 규격'],
+    ['DLA ASSIST · 문서 상세','https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=23626','정부 공식 규격 검색']]
+}};
+const GENERIC_LINKS=[
+  ['CIE Hub · 의류·개인장비 품목별 정보','https://ciehub.info/','명칭, 규격, NSN, 개정 이력'],
+  ['DLA ASSIST Quick Search','https://quicksearch.dla.mil/','정부 공식 규격 검색'],
+  ['EverySpec · FSC 8415 (의류) 규격 목록','https://everyspec.com/FSC-CODE/8415/','규격 PDF 모음']];
+// 계약 회계연도 동안 유효했을 수 있는 규격 개정(체결일을 모르니 후보만)
+function fyWindow(fy){return fy<=1976?[(fy-1)+'-07-01',fy+'-06-30']:[(fy-1)+'-10-01',fy+'-09-30']}
+function specCandidates(itemId,fy){
+  const f=FACTS[itemId];if(!f||!f.revs)return '';
+  const [a,b]=fyWindow(fy);let at=null;const inside=[];
+  for(const [d,l] of f.revs){if(d<=a)at=l;else if(d<=b)inside.push(l)}
+  const L=(at?[at]:[]).concat(inside);return L.join(' → ');
+}
+const itemById=id=>ITEMS.find(i=>i.id===id);
+const contractsOf=id=>CONTRACTS.filter(c=>c.item===id);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s||'').toLowerCase().replace(/[\s\-_.]/g,'');
+function score(it,q){
+  const nq=norm(q);if(!nq)return -1;
+  const hay=[it.ko,it.en,...it.al];let best=-1;
+  for(const h of hay){const n=norm(h);
+    if(n===nq)best=Math.max(best,100);
+    else if(n.startsWith(nq))best=Math.max(best,80);
+    else if(n.includes(nq))best=Math.max(best,60);
+    else if(nq.length>=3&&nq.split('').every((ch,i,a)=>n.includes(ch))&&false)best=Math.max(best,10);
+  }
+  return best;
+}
+function search(q){return ITEMS.concat(MAKERS).map(it=>({it,s:score(it,q)})).filter(x=>x.s>=0).sort((a,b)=>b.s-a.s||a.it.ko.localeCompare(b.it.ko)).map(x=>x.it)}
+function hi(text,q){
+  const i=String(text).toLowerCase().indexOf(String(q).toLowerCase().trim());
+  if(!q.trim()||i<0)return esc(text);
+  return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.trim().length))+'</mark>'+esc(text.slice(i+q.trim().length));
+}
+let active=-1,cur=[];
+function showSug(){
+  const q=$('q').value;
+  cur=q.trim()?search(q).slice(0,8):[];
+  const box=$('sug');
+  if(!cur.length){box.hidden=true;$('q').setAttribute('aria-expanded','false');return}
+  box.innerHTML=cur.map((it,i)=>'<button type="button" role="option" id="o'+i+'" data-i="'+i+'" aria-selected="'+(i===active)+'"><b>'+hi(it.ko,q)+'</b><small>'+esc(it.en)+(it.wars&&it.wars.length?' · '+esc(it.wars.join(' · ')):'')+'</small></button>').join('');
+  box.hidden=false;$('q').setAttribute('aria-expanded','true');
+}
+$('q').addEventListener('input',()=>{active=-1;showSug()});
+$('q').addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){if(!cur.length)return;e.preventDefault();active=(active+(e.key==='ArrowDown'?1:-1)+cur.length)%cur.length;showSug();return}
+  if(e.key==='Enter'){const it=cur[active>=0?active:0];if(it){e.preventDefault();pick(it)}}
+  if(e.key==='Escape'){$('sug').hidden=true}
+});
+$('sug').addEventListener('mousedown',e=>{const b=e.target.closest('button');if(b){e.preventDefault();pick(cur[+b.dataset.i])}});
+document.addEventListener('click',e=>{if(!e.target.closest('.combo'))$('sug').hidden=true});
+
+$('quick').innerHTML=['m43','m51','m65','hbt','og107','alpha'].map(k=>'<button type="button" class="chip" data-k="'+k+'">'+k+'</button>').join('');
+$('quick').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('q').value=b.dataset.k;active=-1;showSug();const r=search(b.dataset.k);if(r.length===1)pick(r[0]);else $('q').focus()});
+
+/* ---------- 품목 상세 + 자료 찾기 ---------- */
+let seq=0;
+function pick(it){
+  if(it.maker)return pickMaker(it);
+  $('q').value=it.ko;$('sug').hidden=true;$('q').setAttribute('aria-expanded','false');
+  const q1=it.en.replace(/'/g,''),qa=[it.en,...it.al.filter(a=>/[a-z]/i.test(a)&&a.length>3)].map(s=>'"'+s.replace(/"/g,'')+'"');
+  const F=FACTS[it.id];
+  const iaQ='('+(F&&F.ia?F.ia:qa.slice(0,4)).join(' OR ')+') AND mediatype:texts';
+  const iaLink='https://archive.org/search?query='+encodeURIComponent(q1)+'&sin=TXT';
+  const cmLink='https://commons.wikimedia.org/w/index.php?search='+encodeURIComponent(q1)+'&ns6=1&ns14=1';
+  const siLink='https://www.si.edu/search/collection-images?edan_q='+encodeURIComponent(q1);
+  $('detail').innerHTML=
+   '<div class="item-h"><span class="n">'+esc(it.ko)+'</span>'+it.wars.map(w=>'<span class="tag">'+esc(w)+'</span>').join('')+(FACTS[it.id]?'<span class="tag">규격·NSN 확인됨</span>':'<span class="tag warn">기본 정보 · 출처 연결 전</span>')+'</div>'+
+   '<dl><dt>정식 명칭</dt><dd class="mono">'+esc(F&&F.en||it.en)+(F?vf('확인됨'):'')+'</dd><dt>별칭</dt><dd>'+esc(it.al.join(', '))+'</dd><dt>구분</dt><dd>'+esc(it.cat)+'</dd>'+
+   (F?'<dt>규격번호</dt><dd><span class="mono">'+esc(F.spec)+'</span>'+vf('확인됨')+'<br><span class="empty">'+esc(F.specNote)+'</span><br><span class="empty">원단: '+esc(F.fabric)+'</span></dd><dt>재고번호 (NSN)</dt><dd>Class 1 기준 '+F.nsn.rows.reduce((n,r)=>n+r.slice(1).filter(Boolean).length,0)+'개 — 아래 표'+vf('CIE Hub 기재')+'</dd><dt>사이즈 체계</dt><dd>길이 '+esc(F.sizes.len.join(' / '))+'<br>체형 '+esc(F.sizes.body.join(' / '))+vf('CIE Hub 기재')+'</dd><dt>설계도·패턴</dt><dd class="empty">'+esc(F.drawing)+'</dd>':'<dt>규격번호</dt><dd class="empty">미확인</dd><dt>재고번호 (FSN/NSN)</dt><dd class="empty">미확인</dd><dt>사이즈 체계</dt><dd class="empty">미확인</dd><dt>설계도·패턴</dt><dd class="empty">미확인</dd>')+'<dt>계약 정보</dt><dd'+(contractsOf(it.id).length?'>'+contractsOf(it.id).length+'건 등록 (아래 계약 목록)':' class="empty">미확인')+'</dd></dl>'+nsnBlock(it)+contractBlock(it)+linksBlock(it)+
+   '<div class="todo">미확인 항목은 공개 자료에서 확인되면 출처와 함께 채워요. 아래 자료에서 규격서나 카탈로그를 찾아 확인할 수 있어요.</div>'+
+   '<h2 style="margin-top:18px">사진 · Wikimedia Commons</h2><div id="cm" class="empty">불러오는 중…</div>'+
+   '<h2 style="margin-top:18px">스캔 자료 · Internet Archive</h2><div id="ia" class="empty">불러오는 중…</div>'+
+   '<div style="margin-top:14px;font-size:13px" class="mono"><a href="'+esc(iaLink)+'" target="_blank" rel="noopener">아카이브에서 더 찾기 ↗</a> · <a href="'+esc(cmLink)+'" target="_blank" rel="noopener">Commons ↗</a> · <a href="'+esc(siLink)+'" target="_blank" rel="noopener">Smithsonian ↗</a></div>';
+  const my=++seq;
+  loadIA(iaQ,my);loadCM(q1,my);
+}
+let mkSel='';
+function contractBlock(it){
+  const L=contractsOf(it.id);if(!L.length)return '';
+  const ms={};L.forEach(c=>(ms[c.co]=ms[c.co]||[]).push(c));
+  const names=Object.keys(ms).sort((a,b)=>ms[b].length-ms[a].length||a.localeCompare(b));
+  const rows=L.filter(c=>!mkSel||c.co===mkSel).sort((a,b)=>a.fy-b.fy||a.key.localeCompare(b.key));
+  let last=0,body='';
+  const hasSpec=!!(FACTS[it.id]&&FACTS[it.id].revs);
+  for(const c of rows){if(c.fy!==last){last=c.fy;const sc=hasSpec?specCandidates(it.id,c.fy):'';body+='<tr><td colspan="3" class="fy">FY'+c.fy+(sc?' <span class="revs" style="font-weight:400">· 이 기간 유효했을 수 있는 규격: '+esc(sc)+'</span>':'')+'</td></tr>'}body+='<tr><td class="mono">'+esc(c.no)+'</td><td>'+esc(c.rawCo)+'</td><td></td></tr>'}
+  return '<h2 style="margin-top:18px">계약 목록 · '+L.length+'건</h2><div class="src">'+esc(CONTRACT_SRC)+'. 번호 속 연도는 회계연도예요. 연도 줄의 "유효했을 수 있는 규격"은 개정 날짜로 계산한 후보이고, 계약 체결일을 모르기 때문에 추정이에요.</div>'+
+   '<div class="mk" role="group" aria-label="제조사 필터"><button type="button" class="chip" data-mk="" aria-pressed="'+(!mkSel)+'">전체</button>'+names.map(n=>'<button type="button" class="chip" data-mk="'+esc(n)+'" aria-pressed="'+(mkSel===n)+'">'+esc(n)+' '+ms[n].length+'</button>').join('')+'</div>'+
+   '<div class="tblw"><table class="tbl"><thead><tr><th>계약번호</th><th>제조사</th><th></th></tr></thead><tbody>'+body+'</tbody></table></div>';
+}
+$('detail').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-mk]');if(!b)return;
+  mkSel=b.dataset.mk;const it=ITEMS.find(i=>$('q').value===i.ko);if(it){const y=window.scrollY;pick(it);window.scrollTo(0,y)}
+});
+function pickMaker(m){
+  $('q').value=m.ko;$('sug').hidden=true;$('q').setAttribute('aria-expanded','false');seq++;
+  const byItem={};m.list.forEach(c=>(byItem[c.item]=byItem[c.item]||[]).push(c));
+  const years=m.list.map(c=>c.fy);
+  $('detail').innerHTML='<div class="item-h"><span class="n">'+esc(m.ko)+'</span><span class="tag">제조사</span><span class="tag warn">'+esc(CONTRACT_SRC)+'</span></div>'+
+   '<dl><dt>등록 계약</dt><dd>'+m.list.length+'건 (FY'+Math.min(...years)+' ~ FY'+Math.max(...years)+')</dd></dl>'+
+   Object.entries(byItem).map(([id,L])=>{const it=itemById(id);return '<h2 style="margin-top:16px">'+esc(it?it.ko:id)+'</h2><div class="tblw"><table class="tbl"><thead><tr><th>회계연도</th><th>계약번호</th></tr></thead><tbody>'+L.sort((a,b)=>a.fy-b.fy||a.key.localeCompare(b.key)).map(c=>'<tr><td class="mono">FY'+c.fy+'</td><td class="mono">'+esc(c.no)+'</td></tr>').join('')+'</tbody></table></div>'}).join('');
+}
+const vf=t=>'<span class="vf">'+t+'</span>';
+function nsnBlock(it){
+  const F=FACTS[it.id];if(!F)return '';const n=F.nsn;
+  return '<h2 style="margin-top:18px">재고번호(NSN) · 사이즈</h2><div class="src">'+esc(n.label)+' · 출처: '+esc(FACT_SRC)+'</div><div class="tblw"><table class="tbl nsn"><thead><tr><th>체형＼길이</th>'+n.cols.map(c=>'<th>'+esc(c)+'</th>').join('')+'</tr></thead><tbody>'+n.rows.map(r=>'<tr>'+r.map((c,i)=>'<td>'+(c?esc(c):(i?'—':''))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><div class="src">'+esc(F.sizeNote)+' '+esc(F.nsnNote)+'</div>';
+}
+function linksBlock(it){
+  const F=FACTS[it.id],L=F?F.links:GENERIC_LINKS;
+  return '<h2 style="margin-top:18px">규격·도면 자료 사이트</h2><ul class="refs links">'+L.map(x=>'<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+' ↗</a><small>'+esc(x[2])+'</small></li>').join('')+'</ul>';
+}
+async function jget(url,ms=9000){
+  const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);
+  try{const r=await fetch(url,{signal:c.signal});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}
+}
+async function loadIA(q,my){
+  const el=()=>$('ia');
+  try{
+    const u='https://archive.org/advancedsearch.php?q='+encodeURIComponent(q)+'&fl[]=identifier&fl[]=title&fl[]=year&fl[]=creator&sort[]=downloads+desc&rows=8&page=1&output=json';
+    const j=await jget(u);if(my!==seq)return;
+    const docs=(j.response&&j.response.docs)||[];
+    el().className='';
+    el().innerHTML=docs.length?'<ul class="refs">'+docs.map(d=>'<li><a href="https://archive.org/details/'+encodeURIComponent(d.identifier)+'" target="_blank" rel="noopener">'+esc(Array.isArray(d.title)?d.title[0]:d.title||d.identifier)+'</a><small>'+esc([d.year,Array.isArray(d.creator)?d.creator[0]:d.creator].filter(Boolean).join(' · ')||d.identifier)+'</small></li>').join('')+'</ul><div class="empty" style="margin-top:6px">검색 결과일 뿐 내용 확인은 직접 해야 해요. 스캔본의 저작권 상태도 항목마다 달라요.</div>':'<div class="empty">일치하는 스캔 자료가 없어요. 아래 링크로 직접 검색해 보세요.</div>';
+  }catch(e){if(my!==seq)return;el().className='err';el().textContent='불러오지 못했어요 ('+(e&&e.message||'오류')+'). 아래 "아카이브에서 더 찾기"를 이용해 주세요.'}
+}
+async function loadCM(q,my){
+  const el=()=>$('cm');
+  try{
+    const u='https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch='+encodeURIComponent(q)+'&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=300&format=json&origin=*';
+    const j=await jget(u);if(my!==seq)return;
+    const pages=Object.values((j.query&&j.query.pages)||{}).filter(p=>p.imageinfo&&p.imageinfo[0]&&/\.(jpe?g|png|gif|webp)$/i.test(p.title||''));
+    el().className='';
+    el().innerHTML=pages.length?'<div class="thumbs">'+pages.map(p=>{const ii=p.imageinfo[0],m=ii.extmetadata||{},lic=(m.LicenseShortName&&m.LicenseShortName.value)||'라이선스 확인 필요';
+      return '<figure><a href="'+esc(ii.descriptionurl)+'" target="_blank" rel="noopener"><img loading="lazy" src="'+esc(ii.thumburl||ii.url)+'" alt="'+esc(p.title.replace(/^File:/,''))+'"></a><figcaption>'+esc(lic)+'<br><a href="'+esc(ii.descriptionurl)+'" target="_blank" rel="noopener">출처·작성자 ↗</a></figcaption></figure>'}).join('')+'</div><div class="empty" style="margin-top:6px">사진은 Wikimedia Commons에서 가져온 것이고, 이용 조건은 각 사진의 라이선스를 따라요.</div>':'<div class="empty">관련 사진이 없어요.</div>';
+  }catch(e){if(my!==seq)return;el().className='err';el().textContent='불러오지 못했어요 ('+(e&&e.message||'오류')+').'}
+}
+
+/* ---------- 계약번호 해석기 (2차 자료 기반) ---------- */
+const AGENCY={W:'전쟁부 (War Department)',DA:'육군부 (Department of the Army)',N:'해군',M:'해병대',AF:'공군',F:'공군'};
+function fyRange(yy){
+  const y=+yy,full=y>=30?1900+y:2000+y;
+  if(full<=1976)return 'FY'+full+' ('+(full-1)+'년 7월 ~ '+full+'년 6월)';
+  return 'FY'+full+' ('+(full-1)+'년 10월 ~ '+full+'년 9월)';
+}
+const TYPE_OLD={C:'의류',E:'개인 장비'};
+const TYPE_NEW={C:'일반 계약',D:'불확정 납품 계약 (IDC)',F:'IDC 하위 주문 또는 BPA/BOA'};
+function decode(raw){
+  const s=String(raw||'').toUpperCase().replace(/[‐-―−]/g,'-').replace(/\s+/g,'').replace(/^[^A-Z0-9]+|[^A-Z0-9]+$/g,'');
+  if(!s)return null;
+  let m,r={fmt:'',era:'',rows:[]};
+  const row=(k,v)=>r.rows.push([k,v]);
+  const agency=c=>AGENCY[c]||c;
+  if((m=s.match(/^(W|DA|N|M|AF|F)-(\d{2})-(\d{3})-([A-Z]{2,4})-(\d{1,5})$/))){
+    const [,c,dd,sub,pp,ss]=m;
+    r.fmt='c-dd-sub-pp-sssss';
+    if(c==='W'){r.era='WWII 후기 (1943~1945)';}
+    else if(pp==='TAP'){r.era='한국전 (FY1953 TAP 시리즈)';}
+    else r.era='한국전 (1950~FY1952)';
+    if(c==='W'&&pp!=='QM'){r.era='WWII 후기 추정 (조달기관 코드가 QM이 아님)'}
+    row('계약기관',agency(c));row('구매 구역 코드',dd+' (코드표 연결 전)');row('하위 구매센터',sub+({'125':' — 한국','557':' — 일본','600':' — 파리'}[sub]||' (코드표 연결 전)'));row('조달기관',pp==='QM'?'QM (병참감실)':pp==='TAP'?'TAP':pp);row('일련번호',String(+ss));
+  }else if((m=s.match(/^W-(\d{3})-([A-Z]{2,3})-(\d{1,5})$/))){
+    const [,ddd,pp,ss]=m;
+    r.fmt='c-ddd-pp-sssss';r.era='WWII 전기 (1930년대 ~ 1943)';
+    row('계약기관',agency('W'));row('보급창 코드',ddd+(ddd==='669'?' — 필라델피아 QM 보급창':' (코드표 연결 전)'));row('조달기관',pp==='QM'?'QM (병참감실)':pp);row('일련번호',String(+ss));
+  }else if((m=s.match(/^(QM)-(\d{3,6})$/))){
+    r.fmt='pp-sssss';r.era='종전 직후 (1946~1948)';row('조달기관','QM (병참감실)');row('일련번호',String(+m[2]));
+  }else if((m=s.match(/^DSA-(\d{1,3})-(\d{1,5})-([A-Z])-(\d{2})$/))){
+    r.fmt='ppp-d-ssss-t-yy';r.era='베트남전 이전~초기 (FY1962)';
+    row('조달기관','DSA (국방공급국)');row('공급센터 코드',m[1]+' (코드표 연결 전)');row('일련번호',String(+m[2]));row('유형 ('+m[3]+')',TYPE_OLD[m[3]]||'코드표 연결 전');row('회계연도',fyRange(m[4]));
+  }else if((m=s.match(/^DSA-(\d{1,3})-(\d{1,5})-(\d{2})-([A-Z])$/))){
+    r.fmt='ppp-d-ssss-yy-t';r.era='베트남전 이전~초기 (FY1963~FY1965)';
+    row('조달기관','DSA (국방공급국)');row('공급센터 코드',m[1]+' (코드표 연결 전)');row('일련번호',String(+m[2]));row('회계연도',fyRange(m[3]));row('유형 ('+m[4]+')',TYPE_OLD[m[4]]||'코드표 연결 전');
+  }else if((m=s.match(/^DSA-(\d{1,2})-(\d{3,5})$/))){
+    r.fmt='ppp-d-ssss';r.era='FY1965 형식';row('조달기관','DSA (국방공급국)');row('공급센터 코드',m[1]+' (코드표 연결 전)');row('일련번호',String(+m[2]));
+  }else if((m=s.match(/^DSA-(\d{3})-(\d{3,5})$/))){
+    r.fmt='ppp-ddd-ssss';r.era='베트남전 (FY1966)';row('조달기관','DSA (국방공급국)');row('주소 코드(AAC)','DSA'+m[1]);row('일련번호',String(+m[2]));
+  }else if((m=s.match(/^DSA-?(\d{3})-(\d{2})-([A-Z])-(\d{3,5})$/))){
+    r.fmt='ppp-ddd-yy-t-ssss';r.era='베트남전 (FY1967~1968 형식)';row('조달기관','DSA (국방공급국)');row('주소 코드(AAC)','DSA'+m[1]);row('회계연도',fyRange(m[2]));row('유형 ('+m[3]+')',TYPE_NEW[m[3]]||'코드표 연결 전');row('일련번호',String(+m[4]));
+  }else if((m=s.match(/^([A-Z]{3})-?(\d{3})-(\d{2})-([A-Z])-(\d{3,5})$/))){
+    r.fmt='pppppp-yy-t-ssss';r.era='FY1967 이후 형식'+(+m[3]>=70?' (베트남전 후기~전후 가능)':'');row('조달기관',m[1]==='DLA'?'DLA (국방군수국)':m[1]);row('주소 코드(AAC)',m[1]+m[2]);row('회계연도',fyRange(m[3]));row('유형 ('+m[4]+')',TYPE_NEW[m[4]]||'코드표 연결 전');row('일련번호',String(+m[5]));
+  }else if((m=s.match(/^DAJB11-?/))){
+    r.fmt='DAJB11';r.era='베트남 현지 조달';row('조달기관','DAJB11 — US Army Procurement Agency, Vietnam');
+  }else return {err:s};
+  r.norm=s;return r;
+}
+function renderCN(){
+  const v=$('cn').value,out=$('cnOut');
+  if(!v.trim()){out.innerHTML='<div class="empty">번호를 입력하면 시대·기관·회계연도를 풀어줘요.</div>';return}
+  const r=decode(v);
+  if(!r||r.err){out.innerHTML='<div class="err">아는 형식이 아니에요.</div><div class="empty">지원: W-431-QM-10665, W-12-036-QM-1107, QM-10614, DA-36-030-QM-369, DA-30-352-TAP-882, DSA-1-777-C-62, DSA-1-1940-63-C, DSA-1-4850, DSA-100-4081, DSA-100-67-C-3537, DLA100-78-C-0720</div>';return}
+  const hit=lookupContract(r.norm);
+  out.innerHTML='<div class="item-h"><span class="tag">'+esc(r.era)+'</span></div><dl><dt>형식</dt><dd class="mono">'+esc(r.fmt)+'</dd>'+r.rows.map(x=>'<dt>'+esc(x[0])+'</dt><dd>'+esc(x[1])+'</dd>').join('')+'</dl>'+
+   '<div class="todo">이 번호만으로는 <b>계약업체와 품목을 알 수 없어요.</b> 라벨의 업체명, 규격번호, 재고번호와 함께 보세요. 번호 속 연도는 달력 연도가 아니라 회계연도이고, 계약일은 제조일과 달라요.</div>'+(hit?'<div class="hit"><b>등록된 계약</b><br>'+esc(hit.rawCo)+' · '+esc((itemById(hit.item)||{}).ko||hit.item)+'<br><a data-go="'+esc(hit.item)+'">품목 보기 →</a> <span style="color:var(--sub)">('+esc(CONTRACT_SRC)+')</span></div>':(r.fmt==='ppp-ddd-yy-t-ssss'||r.fmt==='pppppp-yy-t-ssss'?'<div class="empty" style="margin-top:8px">등록된 계약 목록에는 없는 번호예요.</div>':''));
+}
+function lookupContract(norm){const m=String(norm).match(/^([A-Z]{3})-?(\d{3})-(\d{2})-([A-Z])-(\d{3,5})$/);return m?CBYKEY[ckey(m[1],m[2],m[3],m[4],m[5])]:null}
+$('cnOut').addEventListener('click',e=>{const a=e.target.closest('a[data-go]');if(!a)return;const it=itemById(a.dataset.go);if(it){mkSel='';pick(it);$('detail').scrollIntoView({behavior:'smooth',block:'start'})}});
+$('cn').addEventListener('input',renderCN);
+$('cnEx').innerHTML=['DSA-100-67-C-3536','DLA100-82-C-0575','W-431-QM-10665','DA-36-030-QM-369','DSA-1-1940-63-C'].map(x=>'<button type="button" class="chip" data-x="'+x+'">'+x+'</button>').join('');
+$('cnEx').addEventListener('click',e=>{const b=e.target.closest('button');if(b){$('cn').value=b.dataset.x;renderCN()}});
+window.__t={decode,search,ITEMS,CONTRACTS,MAKERS,lookupContract,FACTS,specCandidates,fyWindow};
+</script>
+</body>
+</html>
